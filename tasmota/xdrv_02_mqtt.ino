@@ -323,6 +323,10 @@ void MqttPublishDirect(const char* topic, bool retained)
   char sretained[CMDSZ];
   char slog_type[20];
 
+#if defined(MQTT_DISABLE_RETAIN)
+  retained = false;
+#endif
+
 #ifdef USE_DEBUG_DRIVER
   ShowFreeMem(PSTR("MqttPublishDirect"));
 #endif
